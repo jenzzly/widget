@@ -1,0 +1,56 @@
+        body{
+                background: #B4B7B8;  
+        }          
+        
+        .box{
+            margin: auto;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            width: 310px;
+            height: 160px;
+            box-shadow: 10px 10px 15px #6D6F70;
+            font-size: 70%;
+            font-weight: bold;
+            
+        }
+
+        .search{
+      
+            position:absolute;
+            left: 42%; bottom: 30%; right: 0;
+
+        }
+   
+        p {
+            font-size: 100%;
+        }
+        
+        #today{
+           font-size: 600%; 
+        }
+        .well{
+            padding: 3px;
+            border-radius: 5px;
+        }
+        
+        .tb{
+            font-size:100%;
+        
+        }
+        
+
+        table, td, th {    
+                border-right: 1px solid #ddd;
+                text-align: left;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                padding-left: 10px;
+                padding-bottom: 1px;
+            }
+        

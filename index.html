@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>Weather widget</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body ng-controller="weatherCtrl">
+             
+     <div class="container">
+         <div class="row box well">
+             <h4> {{wh.location.city}}</h4>
+             <div class="tb">
+                     <div id="today" class="pull-left">{{ wh.item.condition.temp }}° </div>
+                     <div class=""><img class="forecast-img" ng-src="http://l.yimg.com/a/i/us/we/52/{{wh.item.condition.code}}.gif" title="{{wh.item.condition.text}}" onerror="this.onerror=null; this.src='no_img.gif'" /><br>
+                        {{ wh.item.condition.text }}
+                    </div>
+            </div>
+            <table>
+                 <tr>
+                     <td  ng-repeat="forecast in wh.item.forecast | limitTo:5">
+                        {{ forecast.day}}<br>
+                        {{ forecast.high }}°/{{ forecast.low }}°
+                     </td>
+                 </tr>
+             </table>
+             
+            </div>
+    
+        <div class="row search">
+             <form ng-submit="search()">
+                <input type="text" ng-model="zip" class="input-sm"  placeholder="zipcode" />
+                 <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            </form>      
+    </div>
+ 
+</div>
+      
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!--     Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
