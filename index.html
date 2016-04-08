@@ -13,7 +13,7 @@
              
      <div class="container">
          <div class="row box well">
-             <h4> {{wh.location.city}}</h4>
+             <h4> {{wh.location.city}}, {{wh.location.region}} </h4>
              <div class="tb">
                      <div id="today" class="pull-left">{{wh.item.condition.temp}}° </div>
                      <div class=""><img class="forecast-img" ng-src="http://l.yimg.com/a/i/us/we/52/{{wh.item.condition.code}}.gif" title="{{wh.item.condition.text}}" onerror="this.onerror=null; this.src='no_img.gif'" /><br>
