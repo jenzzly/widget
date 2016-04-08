@@ -53,4 +53,15 @@
                 padding-left: 10px;
                 padding-bottom: 1px;
             }
+
+        @media screen and (max-width: 500px) { 
+            .search{
+
+                position:absolute;
+                
+                left: 25%; bottom: 30%; right: 0;
+
+            }
+    
+        }
         
