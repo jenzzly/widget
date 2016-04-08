@@ -3,7 +3,7 @@
   <head>
     <title>Weather widget</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <!-- Bootstrap core CSS -->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet">
@@ -15,7 +15,7 @@
          <div class="row box well">
              <h4> {{wh.location.city}}</h4>
              <div class="tb">
-                     <div id="today" class="pull-left">{{ wh.item.condition.temp }}° </div>
+                     <div id="today" class="pull-left">{{wh.item.condition.temp}}° </div>
                      <div class=""><img class="forecast-img" ng-src="http://l.yimg.com/a/i/us/we/52/{{wh.item.condition.code}}.gif" title="{{wh.item.condition.text}}" onerror="this.onerror=null; this.src='no_img.gif'" /><br>
                         {{ wh.item.condition.text }}
                     </div>

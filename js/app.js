@@ -6,7 +6,7 @@ var myApp = angular.module('myApp', []);
             
 							appService.weather= function(zip) {
 
-								var promise = $http.get('https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20weather.forecast%20WHERE%20woeid%3D%22' + zip + '%22&format=json&diagnostics=true&callback=').then(
+								var promise = $http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + zip + '%2C%20va%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys').then(
 												function(success) {
 													console.log(success.data);
 													return success.data;
@@ -42,3 +42,4 @@ var myApp = angular.module('myApp', []);
             };
 
           });
+
