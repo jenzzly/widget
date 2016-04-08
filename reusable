@@ -1,0 +1,105 @@
+'<div class="container">' +
+                    + ' <div class="row box well"> ' + 
+                      ' <h4> {{wh.location.city}}, {{wh.location.region}} </h4> '
+                          + '<div class="tb"> '
+                          + '  <div id="today" class="pull-left">{{wh.item.condition.temp}}° </div> '
+                          + '   <div class=""><img class="forecast-img" ng-src="http://l.yimg.com/a/i/us/we/52/{{wh.item.condition.code}}.gif" title="{{wh.item.condition.text}}" onerror="this.onerror=null; this.src='no_img.gif'" /><br>
+                                    {{ wh.item.condition.text }}
+                           + '   </div> '
+                           + ' </div> '
+                           + ' <table> '
+                           + '    <tr> '
+                           + '    <td  ng-repeat="forecast in wh.item.forecast | limitTo:5"> '
+                           + '     {{ forecast.day}}<br> '
+                            + '       {{ forecast.high }}°/{{ forecast.low }}° '
+                             + '   </td> '
+                          + '   </tr> '
+                        + '  </table> '
+
+                       + '  </div> '
+
+                       + ' <div class="row search"> '
+                       + '   <form ng-submit="search()"> '
+                       + '       <input type="text" ng-model="zip" class="input-sm"  placeholder="zipcode" /> '
+                       + '       <input type="text" ng-model="state" class="input-sm"  placeholder="state" /> '
+                       + '        <button type="submit" class="btn btn-primary btn-sm">Search</button> '
+                      + '    </form>      '
+                      + ' </div> '
+
+                      +'</div> '
+                      
+                      
+                      
+var myApp = angular.module('myApp', ['']);
+		myApp.service('AppService', function($http, $q) {
+
+							var appService = this;
+            
+							appService.weather= function(zip,state) {
+
+								var promise = $http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + zip + '%2C%20'+ state +'%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys').then(
+												function(success) {
+													console.log(success.data);
+													return success.data;
+												}, function(error) {
+													console.log(error);
+													return $q.reject(error);
+												});
+
+								return promise;
+							};
+      
+						});
+
+
+        myApp.controller('weatherCtrl', function($scope,AppService){
+
+            $scope.zip= '22030';
+            $scope.state= 'VA';
+            
+            $scope.search = function() {
+
+				var promise = AppService.weather($scope.zip,$scope.state);
+
+				promise.then(function(data) {
+
+					console.log(data);
+					$scope.wh = data.query.results.channel;
+				
+				}, function(error) {
+                    console.log(error);
+					$scope.wh= "Error";
+				});
+                
+            };
+
+          });
+
+
+ 
+                   '<div class="row box well">' +
+                    + ' <div> ' + 
+                      ' <h4> {{wh.location.city}}, {{wh.location.region}} </h4> '
+                          + '<div class="tb"> '
+                          + '  <div id="today" class="pull-left">{{wh.item.condition.temp}}° </div> '
+                           + ' </div> '
+                           + ' <table> '
+                           + '    <tr> '
+                           + '    <td  ng-repeat="forecast in wh.item.forecast | limitTo:5"> '
+                           + '     {{ forecast.day}}<br> '
+                            + '       {{ forecast.high }}°/{{ forecast.low }}° '
+                             + '   </td> '
+                          + '   </tr> '
+                        + '  </table> '
+
+                       + '  </div> '
+
+                       + ' <div class="row search"> '
+                       + '   <form ng-submit="search()"> '
+                       + '       <input type="text" ng-model="zip" class="input-sm"  placeholder="zipcode" /> '
+                       + '       <input type="text" ng-model="state" class="input-sm"  placeholder="state" /> '
+                       + '        <button type="submit" class="btn btn-primary btn-sm">Search</button> '
+                      + '    </form>      '
+                      + ' </div> '
+
+                      +'</div> '  

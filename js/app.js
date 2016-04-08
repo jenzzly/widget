@@ -1,4 +1,17 @@
+
+
 var myApp = angular.module('myApp', []);
+
+    
+         myApp.directive('message', function(){
+
+            return {  
+                      restrict : 'E',
+                      replace: false,
+                      templateUrl:'js/template/widget.html'
+            }   
+
+        });
 
 		myApp.service('AppService', function($http, $q) {
 
@@ -43,4 +56,10 @@ var myApp = angular.module('myApp', []);
             };
 
           });
+
+
+
+        
+
+
 
